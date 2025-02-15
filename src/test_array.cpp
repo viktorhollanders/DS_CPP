@@ -4,8 +4,10 @@
 
 void printArr(Array arr){
   int size  = arr.get_size();
+  std::cout << size << std::endl;
+
   for (int i = 0; i < size; i++) {
-    std::cout << arr[i] << ", ";
+    std::cout << arr[i] << " ";
   }
   std::cout << std::endl;
 }
@@ -13,25 +15,12 @@ void printArr(Array arr){
 int main(){
   Array a1;
 
-  a1.pop_back();
-
-  std::cout << a1.get_capacity() << std::endl;
-
-  // add some elements
-  a1.push_back(10);
-  a1.push_back(20);
-  a1.push_back(30);
-  a1.push_back(40);
+  a1.push_back(1);
+  a1.push_back(2);
+  a1.push_back(3);
+  a1.push_back(4);
+  a1.push_back(5);
 
   printArr(a1);
-
-  a1.push_back(50);
-  a1.push_back(60);
-  printArr(a1);
-
-  std::cout << a1.get_capacity() << std::endl;
-  std::cout << a1.get_size() << std::endl;
-
-
   return 0;
 }

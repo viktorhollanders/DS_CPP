@@ -1,11 +1,29 @@
+#ifndef ARRAY_CPP
+#define ARRAY_CPP
+
 #include <cassert>
+#include <iostream>
 #include "../include/array.h"
 
-int &Array::operator[](int index){
-  if (index > _size) assert("index out of bounds");
-  return data[index];
+Array::Array() : _capacity(4),  _size(0) {
+  data = new int[_capacity];
 }
 
+Array::Array(int size) : _capacity(size), _size(size) {
+  data = new int[_capacity];
+  for (int i = 0; i < _size; i++) {
+      data[i] = 0;
+  }
+}
+
+Array::Array(int size, int value) : _capacity(size), _size(size) {
+  data = new int[_capacity];
+  for (int i = 0; i < _size; ++i) {
+      data[i] = value;
+  }
+}
+
+/* copy constructor */
 Array::Array(const Array &other) {
   _size = other._size;
   _capacity = other._capacity;
@@ -16,60 +34,116 @@ Array::Array(const Array &other) {
   }
 }
 
-/* Adds an item to the back of the array */
-void Array::push_back(int num) {
-  if (_size == _capacity) {
-    Array::reserve(_size * 2);
+/* deconstructor */
+Array::~Array(){
+  delete[] data;
+}
+
+/* [] operator*/
+int &Array::operator[](int index){
+  return data[index];
+}
+
+/* = operator*/
+ Array &Array::operator=(const Array& other) {
+  if (&other == this) return *this;
+  _size = other._size;
+  _capacity = other._capacity;
+  delete[] data;
+  data = new int[_capacity];
+
+  for (int i = 0; i < _size; i++) {
+    data[i] = other.data[i];
   }
-  data[_size] = num;
+
+  return *this;
+}
+
+/* Adds an item to the back of the array */
+void Array::push_back(int item) {
+  if (_size == _capacity) {
+    Array::reserve(_capacity * 2);
+  }
+  data[_size] = item;
   _size++;
 }
 
 /* Removes an item to the back of the array */
 void Array::pop_back() {
+  _limit = 4;
   assert(_size > 0 && "array is empty");
 
-  if (_size > 0) {
-    _size--;
-    if (_size < _capacity - (_capacity / 4)) {
-      int new_capacity = _capacity <= 4 ? 4 : _capacity / 2;
-      reserve(new_capacity);
-    }
+  _size--;
+
+  if (_size < _capacity / 4) {
+    int new_capacity = _size < _limit ? 4 : _capacity / 2;
+    reserve(new_capacity);
   }
 }
 
-/* Insert an item in the array */
-int Array::insert(int index, int item) {
-  if (index > _capacity) return 1;
-  data[index] = item;
-  return 0;
+/* Insert an item at a given index in the array */
+void Array::insert(int index, int item) {
+
+  if (_size == _capacity) {
+    reserve(_capacity * 2);
+  }
+
+  for (int i = _size; i >= index; i--) {
+    data[i] = data[i - 1];
+  }
+
+  data[index - 1] = item;
+  _size++;
+
 }
 
 /* Removes an item at a given index from the array */
 void Array::erase(int index) {
-  data[index] = NULL;
-}
-
-/* Reserves space for an array of a given size */
-void Array::reserve(int new_capacity) {
-  if (new_capacity <= _capacity) return;
-    int *temp_arr = new int[new_capacity];
-
-    for (int i = 0; i <= _capacity; i++){
-      temp_arr[i] = data[i];
-    }
-
-    delete data;
-    data = temp_arr;
-    _capacity = new_capacity;
+  if (_size == 0) return;
+  for (int i = index; i <= _size - 1; i++)
+  {
+    data[i] = data[i+1];
   }
+  _size--;
+}
 
 /* changes how many items an array can hold */
 void Array::resize(int size) {
   if (_capacity == size) return;
-  else{
-    if (size < _capacity) _capacity = _size;
+
+  if (size < _size) {
+    for (int i = _size; i < size; i++) {
+      data[i] = 0;
+    }
+    _size = size;
   }
+  else{
+    if (size > _capacity) this->reserve(size);
+    for (int i = _size; i < size; i++) {
+      data[i] = 0;
+    }
+    _size = size;
+  }
+}
+
+/* Reserves space for an array of a given size */
+void Array::reserve(int new_capacity) {
+    if (new_capacity <= _capacity) return;
+
+    int *temp_arr = new int[new_capacity];
+
+    for (int i = 0; i < _size; i++){
+      temp_arr[i] = data[i];
+    }
+
+    delete[] data;
+    data = temp_arr;
+    _capacity = new_capacity;
+  }
+
+/* Gets the size of an array which is how many items are currently in the array */
+int Array::get_size() {
+  return _size;
 }
 
 /* Gets the capasity of the array which is how many item the array can hold in total */
@@ -77,7 +151,15 @@ int Array::get_capacity() {
   return _capacity;
 }
 
-/* Gets the size of an array which is how many items are currently in the array */
-int Array::get_size() {
-  return _size;
+/* A print function */
+void Array::print(){
+  int size  = this->get_size();
+  std::cout << size << std::endl;
+
+  for (int i = 0; i < size; i++) {
+    std::cout << this->data[i] << " ";
+  }
+  std::cout << std::endl;
 }
+
+#endif

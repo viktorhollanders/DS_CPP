@@ -6,12 +6,11 @@ using std::cout;
 using std::cin;
 using std::ws;
 
-int vecs[1000];
+Array vecs[1000];
 
 int main() {
     int q;
     cin >> q;
-    Array my_arr;
 
     for (int i = 0; i < q; i++) {
         int instance;
@@ -28,52 +27,51 @@ int main() {
             cin >> other;
             other--; // Change to 0-based index
             // Assignment
+            vecs[instance] = vecs[other];
         }
         else if (op == '+') {
             int value;
             cin >> value;
             // Push back
-            my_arr.push_back(value);
+          vecs[instance].push_back(value);
         }
         else if (op == '-') {
             // Pop back
-            my_arr.pop_back();
+            vecs[instance].pop_back();
         }
         else if (op == 'i') {
             int index, value;
             cin >> index >> value;
             // Insert
-            my_arr.insert(index, value);
+            vecs[instance].insert(index, value);
         }
         else if (op == 'e') {
             int index;
             cin >> index;
             // Erase
-            my_arr.erase(index);
+            vecs[instance].erase(index);
         }
         else if (op == 'g') {
             int index;
             cin >> index;
             // Get
-            my_arr[index];
+            vecs[instance][index];
         }
         else if (op == 's') {
             int index, value;
             cin >> index >> value;
             // Set
-            my_arr[index] = value;
+            vecs[instance][index] = value;
         }
         else if (op == 'r') {
             int sz;
             cin >> sz;
             // Resize
-            my_arr.resize(sz);
+            vecs[instance].resize(sz);
         }
         else if (op == 'p') {
             // Print
-            for (int i = 0; i < my_arr.get_size(); i++) {
-              std::cout << my_arr[i] << std::endl;
-            }
+            vecs[instance].print();
         }
         else {
             assert(false);
