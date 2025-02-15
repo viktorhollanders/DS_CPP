@@ -1,4 +1,4 @@
- # macOS system files
+# macOS system files
 .DS_Store
 .AppleDouble
 .LSOverride
@@ -26,6 +26,15 @@ CMakeFiles/
 cmake_install.cmake
 Makefile
 
+# Ignore the bin directory where the executable and object files are stored
+bin/
+
+# Ignore lib directory (if you have built libraries)
+lib/
+
+# Ignore any other build directories or files
+build/
+
 # IDE and editor-specific files
 .vscode/
 .idea/
@@ -34,7 +43,6 @@ Makefile
 *.swn
 
 # Xcode build files
-build/
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -45,3 +53,7 @@ build/
 !default.perspectivev3
 xcuserdata/
 *.xcworkspace/
+
+# Ignore the include directory if it contains generated or compiled files (e.g., .h files)
+# Uncomment this if you don't want to track changes in include files
+# include/
