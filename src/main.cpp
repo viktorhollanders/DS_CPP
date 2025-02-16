@@ -55,7 +55,7 @@ int main() {
             int index;
             cin >> index;
             // Get
-            vecs[instance][index];
+            cout << vecs[instance][index] << std::endl;
         }
         else if (op == 's') {
             int index, value;

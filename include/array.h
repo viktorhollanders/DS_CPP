@@ -13,7 +13,7 @@ public:
   int *data;
 
   Array();
-  Array(int value);
+  Array(int size);
   Array(int size, int value);
   Array(const Array& other);
   ~Array();
