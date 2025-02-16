@@ -1,6 +1,6 @@
 #include <cassert>
 #include <iostream>
-#include "../include/array.h"
+#include "array.h"
 
 using std::cout;
 using std::cin;

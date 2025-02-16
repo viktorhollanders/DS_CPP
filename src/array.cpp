@@ -3,7 +3,7 @@
 
 #include <cassert>
 #include <iostream>
-#include "../include/array.h"
+#include "array.h"
 
 Array::Array() {
   _capacity = 4;
@@ -95,7 +95,7 @@ void Array::pop_back() {
 void Array::insert(int index, int item) {
   if (index < 0 || index > _size) return;
 
-  if (_size + 1 == _capacity) {
+  if (_size + 1 >= _capacity) {
     reserve(_capacity * 2);
   }
 
@@ -109,7 +109,7 @@ void Array::insert(int index, int item) {
 
 /* Removes an item at a given index from the array */
 void Array::erase(int index) {
-  if (_size < 0) return;
+  if (_size < 0 || index < 0 || index >= _size) return;
   for (int i = index; i < _size - 1; i++)
   {
     data[i] = data[i + 1];
@@ -118,20 +118,19 @@ void Array::erase(int index) {
 }
 
 /* changes how many items an array can hold */
-void Array::resize(int size) {
-  if (size < 0) return;
-  if (size == _size) return;
+void Array::resize(int new_size) {
+  if (new_size < 0 || new_size == _size) return;
 
-  if (_size > size) {
-    _size = size;
-  }
-  else{
-    if (size >= _capacity) reserve(size *2);
-    for (int i = _size; i < size; i++) {
+  if (new_size < _size) {
+    _size = new_size;
+  } else if (new_size > _size) {
+    if (new_size >= _capacity) reserve(new_size *2);
+    for (int i = _size; i < new_size; i++) {
       data[i] = 0;
     }
-    _size = size;
+    _size = new_size;
   }
+
 }
 
 /* Reserves space for an array of a given size */
