@@ -21,10 +21,6 @@
 *.stackdump
 
 # CMake files
-CMakeCache.txt
-CMakeFiles/
-cmake_install.cmake
-Makefile
 
 # Ignore the bin directory where the executable and object files are stored
 bin/

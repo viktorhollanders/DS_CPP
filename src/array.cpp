@@ -1,5 +1,5 @@
-#ifndef ARRAY_CPP
-#define ARRAY_CPP
+#ifndef _ARRAY_CPP
+#define _ARRAY_CPP
 
 #include <cassert>
 #include <iostream>
@@ -27,7 +27,7 @@ Array::Array(int size, int value) : _capacity(size), _size(size) {
 }
 
 /* copy constructor */
-Array::Array(const Array &other) {
+Array::Array(const Array& other) {
   _size = other._size;
   _capacity = other._capacity;
   data = new int[_capacity];
