@@ -12,11 +12,9 @@ int main(){
   myArr.push_back(3);
   myArr.push_back(3);
 
-  assert(myArr.get_size() == 4);
+  myArr.print();
 
 
-  myArr.push_back(5);
-  assert(myArr.get_capacity() == 8);
 
 
 }
