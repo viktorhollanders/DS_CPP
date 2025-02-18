@@ -69,15 +69,40 @@ stack: $(BIN)/test_stack
 	@echo "Running Stack test..."
 	@./$(BIN)/test_stack
 
-# Define the target for the Array test executable.
-$(BIN)/test_stack: $(SRC)/test_stack.cpp $(BIN)/stack.o
+# Define the target for the Stack test executable.
+$(BIN)/test_stack: $(SRC)/test_stack.cpp $(BIN)/stack.o $(BIN)/array.o
 	@echo "🛠 Building Stack test executable..."
 	$(CXX) $(CXXFLAGS) -I$(INCLUDE) -o $@ $^
 
-# Build the object file for array.cpp.
-$(BIN)/stack.o: $(SRC)/stack.cpp
+# Build the object file for stack.cpp.
+$(BIN)/stack.o: $(SRC)/stack.cpp $(INCLUDE)/stack.h $(INCLUDE)/array.h
 	@echo "🛠 Compiling stack.cpp to stack.o..."
 	$(CXX) $(CXXFLAGS) -I$(INCLUDE) -c $(SRC)/stack.cpp -o $(BIN)/stack.o
+
+# Build the object file for array.cpp.
+$(BIN)/array.o: $(SRC)/array.cpp $(INCLUDE)/array.h
+	@echo "🛠 Compiling array.cpp to array.o..."
+	$(CXX) $(CXXFLAGS) -I$(INCLUDE) -c $(SRC)/array.cpp -o $(BIN)/array.o
+
+deque: $(BIN)/test_deque
+	@echo "Running Deque test..."
+	@./$(BIN)/test_deque
+
+# Define the target for the Deque test executable.
+$(BIN)/test_deque: $(SRC)/test_deque.cpp $(BIN)/deque.o $(BIN)/dll.o
+	@echo "🛠 Building Deque test executable..."
+	$(CXX) $(CXXFLAGS) -I$(INCLUDE) -o $@ $^
+
+# Build the object file for deque.cpp.
+$(BIN)/deque.o: $(SRC)/deque.cpp $(INCLUDE)/deque.h $(INCLUDE)/dll.h
+	@echo "🛠 Compiling deque.cpp to deque.o..."
+	$(CXX) $(CXXFLAGS) -I$(INCLUDE) -c $(SRC)/deque.cpp -o $(BIN)/deque.o
+
+# Build the object file for array.cpp.
+$(BIN)/dll.o: $(SRC)/array.cpp $(INCLUDE)/array.h
+	@echo "🛠 Compiling dll.cpp to dll.o..."
+	$(CXX) $(CXXFLAGS) -I$(INCLUDE) -c $(SRC)/dll.cpp -o $(BIN)/dll.o
+
 
 
 debug: CXXFLAGS += $(CXXDEBUGFLAGS)

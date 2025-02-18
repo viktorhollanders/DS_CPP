@@ -1,12 +1,13 @@
 #include <iostream>
 #include "stack.h"
 
-int main(){
+int main() {
   Stack myStack;
 
-  myStack.push(4);
-  myStack.push(3);
-  myStack.push(2);
+  myStack.push(10);
+  myStack.push(20);
+
+  std::cout << "Top element: " << myStack.top() << std::endl;
 
   return 0;
 }

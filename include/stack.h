@@ -1,16 +1,17 @@
 #ifndef _STACK_H
 #define _STACK_H
-#include "dll.h"
+#include "array.h"
 
 class Stack {
-
-
   public:
-    Dll stack;
+    Array array_stack;
+
+    Stack();
+
     void push(int value);
-      int pop();
-      int top();
-      bool isEmpty();
-  };
+    void pop();
+    int top();
+    bool isEmpty();
+};
 
 #endif

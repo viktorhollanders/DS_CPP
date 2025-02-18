@@ -49,7 +49,7 @@ int& Array::operator[](int index){
 }
 
 /* = operator*/
- Array &Array::operator=(const Array& other) {
+ Array& Array::operator=(const Array& other) {
   if (&other == this) return *this;
 
   // free old memmory

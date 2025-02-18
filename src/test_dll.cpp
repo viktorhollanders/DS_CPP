@@ -3,6 +3,8 @@
 
 int main(){
 
+  Dll mylist3;
+
   Dll list1;
   Dll list2;
 
