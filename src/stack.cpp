@@ -4,24 +4,24 @@
 #include <cassert>
 #include <iostream>
 #include "stack.h"
-#include "dll.h"
 
-Bool Stack::isEmpty() {
-  return Dll::empty();
+
+bool Stack::isEmpty() {
+  return stack.empty();
 }
 
-int Stack::pop(Node* last_val) {
-  return Dll::erase(Node* last_val);
+int Stack::pop() {
+  return stack.erase(stack._trailer->_prev)->data;
 }
 
-void Stack::push(Node* last_val, int value) {
-  Dll::insert(Node* last_val, value)
+void Stack::push(int value) {
+  stack.insert(stack._trailer, value);
 }
 
 int Stack::top() {
-  if (Stack::isEmpty()) return NULL;
+  if (stack.empty()) return 0;
 
-  return Dll::back()->data;
+  return stack.back()->data;
 }
 
 #endif
