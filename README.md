@@ -14,4 +14,9 @@ To run the Dll run:
 make dll
 ```
 
-```make clean``` will remove all o files 
+To run the Dll run: NOT working compleatly
+```
+make stack
+```
+
+```make clean``` will remove all o files

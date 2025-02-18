@@ -1,50 +1,80 @@
+#include <cassert>
 #include <iostream>
 #include "array.h"
 
-int main(){
-  Array arr1;
-  Array arr2;
+using std::cout;
+using std::cin;
+using std::ws;
 
-  arr1.push_back(33);
+Array vecs[1000];
 
-  std::cout << arr1[0] << std::endl;
+int main() {
+    int q;
+    cin >> q;
 
-  arr1.resize(5);
+    for (int i = 0; i < q; i++) {
+        int instance;
+        cin >> instance;
+        instance--; // Change to 0-based index
 
-  arr1.print();
+        // Consume whitespace before reading character
+        cin >> ws;
+        char op;
+        cin >> op; // Read operation character
 
-  arr2.insert(0, -14);
-  arr2.print();
-
-  std::cout <<"copy arr1 to arr2" << std::endl;
-  arr2 = arr1;
-
-  std::cout << "print arr2" << std::endl;
-  arr2.print();
-
-  arr2 = arr2;
-
-  std::cout << "print arr2" << std::endl;
-  arr2.print();
-
-  arr1.push_back(1);
-  arr1.push_back(3);
-  arr1.push_back(4);
-
-  arr1.insert(1, 2);
-
-  arr1.print();
-
-  arr1.erase(2);
-  std::cout << "print after erase" << std::endl;
-  arr1.print();
-
-
-  std::cout << "print element access arr1[5] should return 1" << std::endl;
-  std::cout << arr1[5] << std::endl;
-
-  arr1.resize(3);
-  arr1.print();
-
-  return 0;
+        if (op == 'a') {
+            int other;
+            cin >> other;
+            other--; // Change to 0-based index
+            // Assignment
+            vecs[instance] = vecs[other];
+        }
+        else if (op == '+') {
+            int value;
+            cin >> value;
+            // Push back
+          vecs[instance].push_back(value);
+        }
+        else if (op == '-') {
+            // Pop back
+            vecs[instance].pop_back();
+        }
+        else if (op == 'i') {
+            int index, value;
+            cin >> index >> value;
+            // Insert
+            vecs[instance].insert(index, value);
+        }
+        else if (op == 'e') {
+            int index;
+            cin >> index;
+            // Erase
+            vecs[instance].erase(index);
+        }
+        else if (op == 'g') {
+            int index;
+            cin >> index;
+            // Get
+            cout << vecs[instance][index] << std::endl;
+        }
+        else if (op == 's') {
+            int index, value;
+            cin >> index >> value;
+            // Set
+            vecs[instance][index] = value;
+        }
+        else if (op == 'r') {
+            int sz;
+            cin >> sz;
+            // Resize
+            vecs[instance].resize(sz);
+        }
+        else if (op == 'p') {
+            // Print
+            vecs[instance].print();
+        }
+        else {
+            assert(false);
+        }
+    }
 }
