@@ -1,12 +1,15 @@
 #include <cassert>
 #include <iostream>
+#include <cstring>
 #include "deque.h"
+#include "deque.cpp"
+
 
 using std::cout;
 using std::cin;
 using std::ws;
 
-Array vecs[1000];
+Deque deques[1000];
 
 int main() {
     int q;
@@ -15,66 +18,44 @@ int main() {
     for (int i = 0; i < q; i++) {
         int instance;
         cin >> instance;
-        instance--; // Change to 0-based index
+        instance--;  // Convert to 0-index.
+        char op[10];
+        cin >> ws >> op;
 
-        // Consume whitespace before reading character
-        cin >> ws;
-        char op;
-        cin >> op; // Read operation character
-
-        if (op == 'a') {
+        if (strcmp(op, "a") == 0) {
             int other;
             cin >> other;
-            other--; // Change to 0-based index
-            // Assignment
-            vecs[instance] = vecs[other];
+            other--;
+            deques[instance] = deques[other];
         }
-        else if (op == '+') {
+        else if (strcmp(op, "+f") == 0) {
             int value;
             cin >> value;
-            // Push back
-          vecs[instance].push_back(value);
+            deques[instance].push_front(value);
         }
-        else if (op == '-') {
-            // Pop back
-            vecs[instance].pop_back();
+        else if (strcmp(op, "+b") == 0) {
+            int value;
+            cin >> value;
+            deques[instance].push_back(value);
         }
-        else if (op == 'i') {
-            int index, value;
-            cin >> index >> value;
-            // Insert
-            vecs[instance].insert(index, value);
+        else if (strcmp(op, "-f") == 0) {
+            deques[instance].pop_front();
         }
-        else if (op == 'e') {
-            int index;
-            cin >> index;
-            // Erase
-            vecs[instance].erase(index);
+        else if (strcmp(op, "-b") == 0) {
+            deques[instance].pop_back();
         }
-        else if (op == 'g') {
-            int index;
-            cin >> index;
-            // Get
-            cout << vecs[instance][index] << std::endl;
+        else if (strcmp(op, "f") == 0) {
+            cout << deques[instance].front() << '\n';
         }
-        else if (op == 's') {
-            int index, value;
-            cin >> index >> value;
-            // Set
-            vecs[instance][index] = value;
+        else if (strcmp(op, "b") == 0) {
+            cout << deques[instance].back() << '\n';
         }
-        else if (op == 'r') {
-            int sz;
-            cin >> sz;
-            // Resize
-            vecs[instance].resize(sz);
-        }
-        else if (op == 'p') {
-            // Print
-            vecs[instance].print();
+        else if (strcmp(op, "s") == 0) {
+            cout << deques[instance].size() << '\n';
         }
         else {
-            assert(false);
+            assert(false && "Unknown operation");
         }
     }
+    return 0;
 }

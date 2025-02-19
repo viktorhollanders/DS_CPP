@@ -12,6 +12,7 @@ class Stack {
     void pop();
     int top();
     bool isEmpty();
+    int size();
 };
 
 #endif

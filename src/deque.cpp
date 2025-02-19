@@ -19,7 +19,7 @@ Deque& Deque::operator=(const Deque& other) {
 }
 
 /* adds element to the front */
-void Deque::push_fornt(int item) {
+void Deque::push_front(int item) {
   dll_deque.insert(dll_deque._header->_next, item);
 };
 
@@ -30,7 +30,7 @@ void Deque::push_back(int item) {
 
 
 /* remove element from the front */
-void Deque::pop_fornt() {
+void Deque::pop_front() {
   dll_deque.erase(dll_deque._header);
 }
 
@@ -53,6 +53,5 @@ Node* Deque::back() {
 int Deque::size() {
   return dll_deque.get_size();
 }
-
 
 #endif

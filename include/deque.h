@@ -14,11 +14,11 @@ class Deque {
     Deque& operator=(const Deque& other);
 
     // Methods
-    void push_fornt(int value);
+    void push_front(int value);
     void push_back(int value);
 
 
-    void pop_fornt();
+    void pop_front();
     void pop_back();
 
     Node* front();
