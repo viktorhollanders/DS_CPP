@@ -25,7 +25,7 @@ void Deque::push_front(int item) {
 
 /* adds element to the back */
 void Deque::push_back(int item) {
-  dll_deque.insert(dll_deque._trailer->_prev, item);
+  dll_deque.insert(dll_deque._trailer, item);
 }
 
 
