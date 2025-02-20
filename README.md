@@ -1,28 +1,40 @@
-The make file will help you to runn tests on the following data structures:
+# Data structures in cpp
+
+This is a data structure project for the c++ course T-403-FORC at Reykjavik university.
+It uses the c++ 98 standard.
+
+## Make file
+The make file will help you to run tests on the following data structures:
 
 - Array,
 - Dll,
 - Stack
 - Deque
 
-To compile the array run"
+To compile the array run:
 ```
-make array
+  make array
 ```
 
 To run the Dll run:
 ```
-make dll
+  make dll
 ```
 
-To run the Stack run:
+To run the stack run:
 ```
-make stack
-```
-
-To run the Deque run:
-```
-make deque
+  make stack
 ```
 
-```make clean``` will remove all o files
+To run the deque run:
+```
+  make deque
+```
+
+To clean up run:
+```
+  make clean
+```
+
+Viktor Hollanders
+[viktorhollanders@hey.com](mailto::viktorhollanders@hey.com)
