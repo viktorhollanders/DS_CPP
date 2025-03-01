@@ -3,7 +3,7 @@
 This is a data structure project for the c++ course T-403-FORC at Reykjavik university.
 It uses the c++ 98 standard.
 
-## Make file
+## Building
 The make file will help you to run tests on the following data structures:
 
 - Array,
@@ -12,6 +12,7 @@ The make file will help you to run tests on the following data structures:
 - Deque
 
 To compile the array run:
+
 ```
   make array
 ```

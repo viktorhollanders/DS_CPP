@@ -6,12 +6,13 @@
 #include "dll.h"
 
 // constructors
-Dll::Dll() : _size(0) {
+Dll::Dll() {
   _header =  new Node();
   _trailer = new Node();
 
   _header->_next = _trailer;
   _trailer->_prev = _header;
+  _size = 0;
 };
 
 Dll::Dll(const Dll& other) {
@@ -26,7 +27,7 @@ Dll::Dll(const Dll& other) {
 // deconstructor
 Dll::~Dll(){
   Node* curr = _header;
-  while (curr != _trailer) {
+  while (curr != NULL) {
     Node* next_node = curr->_next;
     delete curr;
     curr = next_node;
@@ -59,7 +60,7 @@ Node* Dll::front() {
 
 Node* Dll::back() {
   if (Dll::empty()) return _trailer;
-  return _trailer;
+  return _trailer->_prev;
 };
 
 // // modifiers
@@ -67,6 +68,8 @@ Node* Dll::back() {
 
 /* inserts a node in the Dll */
 Node* Dll::insert(Node* cursor, int item) {
+  if (cursor == _header) cursor = _header->_next;
+
   Node* new_node = new Node();
   new_node->data = item;
 
@@ -102,12 +105,8 @@ Node* Dll::erase(Node* cursor) {
 };
 
 void Dll::clear() {
-  Node* current = this->_header->_next;
-
-  while (current != this->_trailer) {
-    Node* node_next = current->_next;
-    delete current;
-    current = node_next;
+  while (!empty()) {
+    erase(_header->_next);
   }
 
   this->_header->_next = _trailer;

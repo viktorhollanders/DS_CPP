@@ -26,16 +26,10 @@ int main() {
   dq.pop_back();
   dq.pop_back();
   dq.pop_back();
-  dq.pop_back();
-  dq.pop_back();
-
-
 
   std::cout << dq.front()->data << std::endl;
   std::cout << dq.back()->data << std::endl;
   std::cout << dq.size() << std::endl;
-
-
 
 
   std::cout << "test ran sucseffully " << std::endl;

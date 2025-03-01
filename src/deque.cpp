@@ -31,12 +31,16 @@ void Deque::push_back(int item) {
 
 /* remove element from the front */
 void Deque::pop_front() {
-  dll_deque.erase(dll_deque._header);
+  if (!dll_deque.empty()) {
+    dll_deque.erase(dll_deque._header->_next);
+  }
 }
 
 /* remove element from the back */
 void Deque::pop_back() {
-  dll_deque.erase(dll_deque._trailer->_prev);
+  if (!dll_deque.empty()) {
+    dll_deque.erase(dll_deque._trailer->_prev);
+  }
 }
 
 /* gets the first element in the Deque */
